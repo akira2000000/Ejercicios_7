@@ -4,8 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <h1>Simón dice<h1>
+        <p id="hola"></p>
+        <!--<script src="hola.js"></script>-->
+        <p>que:</p>
+        <p><span id="accion"></span></p>
+        <script>
+            fetch('partes.json')
+            .then(response=> response.json())
+            .then(json=>{
+                document.getElementById("accion").innerHTML=json.acciones[0] + " " + json.partes[0] + " " + json.lado[1];
+                console.log(json);
+            })
+
+            </script>
+
 </body>
 </html>
