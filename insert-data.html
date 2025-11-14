@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+</head>
+<body>
+    <input type="text" id="datos">
+    <button type="button" onclick="ponerTexto(document.getElementById('datos').value)">Enviar</button>
+    <script>  
+          const supabasePublicClient = supabase.createClient('https://ypbexbkuoudcnxnlnmpj.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlwYmV4Ymt1b3VkY254bmxubXBqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE5MDIzMjEsImV4cCI6MjA3NzQ3ODMyMX0.eZRDSWV18tRQuObFR9t65v6yKM6vV9UmmtRxXzO0umo',{
+            db:{schema:"public"}
+        } 
+    
+    );
+
+    async function ponerTexto(registro) {
+        const respuesta = await supabasePublicClient.from ('siguesTu').insert([{frase: registro},]).select()
+        
+    }
+    ponerTexto();
+    </script>
+</body>
+</html>

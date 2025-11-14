@@ -8,7 +8,30 @@
    
 </head>
 <body>
-    <script src="supabase.js"></script>
+    <div id="foto"></div>
+    <script>
+        const supabaseClient = supabase.createClient("https://ypbexbkuoudcnxnlnmpj.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlwYmV4Ymt1b3VkY254bmxubXBqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE5MDIzMjEsImV4cCI6MjA3NzQ3ODMyMX0.eZRDSWV18tRQuObFR9t65v6yKM6vV9UmmtRxXzO0umo",{
+            db:{schema:"public"}
+        } 
+    
+    );
+
+    (async()=>{
+        const response = await supabaseClient.storage.from("foto").getPublicUrl("imagen1.JPEG")
+        console.log(response.data.publicUrl)
+        
+        //const response = await supabaseClient.from("siguesTu").select("*")
+        //console.log(response)
+        //document.getElementById("url").innerHTML = JSON.stringify(response,null,2)
+        //document.getElementById("url").innerHTML = response.data[1].foto
+        
+        const imgElement = document.createElement('img')
+        imgElement.src = response.data.publicUrl
+        imgElement.width = 400
+        document.getElementById('foto').appendChild(imgElement)
+    })()
+
+    </script>
 </body>
 </html>
 
